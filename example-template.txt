@@ -1,0 +1,9 @@
+-- 1 What is your favourite food?
+-- color What is your favourite color?
+-- 3 Come up with a funny code word.
+-- 4 What is your most favourite time? (for example: 11:00 pm, evening, etc.)
+-- five Do you want to have a beard? (Yes or no?)
+
+The time was <l:4>. I decided to eat my favourite <l:1>, which was in a beautiful <l:color> box. I pick up the box, and a loud noise comes from my window:
+- <u:3>!
+I went to the window to check what was going on and saw two old men playing a board game. One said: - Well, do you accept defeat? - <five> - The second one answered. I closed the window and went to eat my favourite <l:1>.

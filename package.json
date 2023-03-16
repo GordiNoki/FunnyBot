@@ -1,0 +1,22 @@
+{
+  "name": "funnybot",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "GeN (https://github.com/GordiNoki",
+  "license": "YOLO",
+  "scripts": {
+    "build": "tsc --project ./tsconfig.json",
+    "prestart": "tsc --project ./tsconfig.json",
+    "start": "node ."
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@vk-io/scenes": "^1.2.0",
+    "@vk-io/session": "^2.2.0",
+    "dotenv": "^16.0.3",
+    "vk-io": "^4.8.1"
+  }
+}
