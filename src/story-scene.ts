@@ -1,4 +1,5 @@
 import { StepScene } from "@vk-io/scenes";
+import { KeyboardBuilder, Keyboard } from "vk-io";
 import { TemplateParser } from "./template-parser";
 
 export function SceneFactory(
@@ -8,6 +9,8 @@ export function SceneFactory(
   const questions = templateParser.getQuestionMap();
   return new StepScene(slug, [
     async (ctx) => {
+      ctx.state.isActive = true;
+
       await ctx.send("Answer next answers:");
 
       return ctx.scene.step.next();
@@ -26,9 +29,24 @@ export function SceneFactory(
     }),
     async (ctx) => {
       await ctx.send(templateParser.applyTemplate(ctx.scene.state.answers));
-      await ctx.send("Do you want to try again? Write anything to bot and press the button again!");
+
+      const keyboard = new KeyboardBuilder();
+      keyboard.oneTime();
+
+      keyboard.textButton({
+        label: "Create story",
+        payload: slug,
+        color: Keyboard.SECONDARY_COLOR,
+      });
+
+      ctx.state.isActive = false;
+
+      await ctx.send(
+        `Do you want to try again? Press the "Create story" button!`,
+        { keyboard }
+      );
 
       return ctx.scene.step.next();
-    }
+    },
   ]);
 }

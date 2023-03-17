@@ -15,7 +15,7 @@ const sessionManager = new SessionManager();
 const sceneManager = new SceneManager();
 const templateParser = new TemplateParser(process.env.TEMPLATE_PATH as string);
 
-sceneManager.addScenes([SceneFactory(templateParser)]);
+sceneManager.addScenes([SceneFactory(templateParser, "NewStory")]);
 
 vk.updates.on("message_new", sessionManager.middleware);
 vk.updates.on("message_new", sceneManager.middleware);
@@ -23,10 +23,7 @@ vk.updates.on("message_new", sceneManager.middlewareIntercept);
 
 vk.updates.on("message_new", (ctx, next) => {
   if (ctx.messagePayload) {
-    switch (ctx.messagePayload) {
-      case "NewStory":
-        return ctx.scene.enter("CreateStory");
-    }
+    return ctx.scene.enter(ctx.messagePayload);
   }
 
   if (!ctx.state.isActive) {
